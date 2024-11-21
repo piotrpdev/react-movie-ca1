@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import MovieHeader from "../headerMovie";
 import Grid from "@mui/material/Grid2";
 import ImageList from "@mui/material/ImageList";
@@ -28,11 +27,7 @@ const TemplateMoviePage = ({ movie, children }) => {
 
       <Grid container spacing={5} style={{ padding: "15px" }}>
         <Grid size={{xs: 3}}>
-          <div sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-around",
-          }}>
+          <div>
             <ImageList
                 sx={{
                     height: "100vh",

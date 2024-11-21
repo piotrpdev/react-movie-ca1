@@ -1,4 +1,3 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage";
@@ -8,7 +7,7 @@ import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
-import MoviesContextProvider from "./contexts/moviesContext";
+import MoviesContextProvider from "./contexts/moviesContextProvider";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import UpcomingMovesPage from "./pages/upcomingMoviesPage";
 
@@ -22,6 +21,7 @@ const queryClient = new QueryClient({
   },
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -43,8 +43,6 @@ const App = () => {
     </QueryClientProvider>
   );
 };
-
-
 
 const rootElement = createRoot( document.getElementById("root") )
 rootElement.render(<App />);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
@@ -30,8 +30,6 @@ const FavoriteMoviesPage = () => {
     q.data.genre_ids = q.data.genres.map(g => g.id)
     return q.data
   });
-
-  const toDo = () => true;
 
   return (
     <PageTemplate

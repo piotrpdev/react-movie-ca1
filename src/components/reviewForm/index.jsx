@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -80,7 +80,7 @@ const ReviewForm = ({ movie }) => {
     reset,
   } = useForm(defaultValues);
 
-  const handleSnackClose = (event) => {
+  const handleSnackClose = () => {
     setOpen(false);
     navigate("/movies/favorites");
   };
@@ -120,7 +120,7 @@ const ReviewForm = ({ movie }) => {
         </MuiAlert>
       </Snackbar>
 
-      <form sx={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Controller
           name="author"
           control={control}
@@ -179,7 +179,7 @@ const ReviewForm = ({ movie }) => {
         <Controller
           control={control}
           name="rating"
-          render={({ field: { onChange, value } }) => (
+          render={() => (
             <TextField
               id="select-rating"
               select

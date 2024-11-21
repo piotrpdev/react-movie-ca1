@@ -1,4 +1,3 @@
-import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
@@ -32,7 +31,7 @@ const MovieHeader = (props) => {
           <HomeIcon color="primary" />
         </a>
         <br />
-        <span sx={{ fontSize: "1.5rem" }}>{`   "${movie.tagline}"`} </span>
+        <span>{`   "${movie.tagline}"`} </span>
       </Typography>
 
       <IconButton aria-label="go forward" onClick={() => navigate(+1) } >
