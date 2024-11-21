@@ -1,12 +1,23 @@
 {
-  "name": "movies",
+  "name": "react-movie-ca1",
+  "author": "Piotr Płaczek <piotrpdev@gmail.com>",
+  "license": "GPL-3.0",
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "engines": {
+		"npm": ">=10.0.0",
+		"node": ">=22.0.0"
+	},
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/piotrpdev/react-movie-ca1"
+	},
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "lint:write": "eslint . --fix",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,17 +1,85 @@
 # React Movie CA1
 
-## License
+[React][react] SPA for movie browsing, using the
+[*"The Movie Database (TMDb)"*][tmdb-key] API.
 
-Code for CRA to Vite migration copied from [this article][vite-article].
+## Features
 
-`.js` to `.jsx` script used from [here][js-jsx].
+- [x] Responsive React UI thanks to [MUI][mui].
+- [x] Cached TMDb API queries thanks to [TanStack Query][tanstack].
+- [x] Loading spinners and informative error messages.
+- [x] Fast and efficient JavaScript bundling thanks to [Vite][vite].
 
-Various Vite code copied from [their guide][vite-guide].
+## Usage
 
-Migrated from React Query v3 to TanStack Query v5 using [these][tan4] [articles][tan5].
+> [!NOTE]
+> You will need to provide [your own TMDb API key][tmdb-key].
 
-[vite-article]: https://medium.com/@mun1013/guide-to-migrating-from-create-react-app-cra-to-vite-5516f55aa410
+```bash
+# Install dependencies
+npm install
+
+# Add TMDb key
+nano .env.template
+mv .env.template .env
+
+# Run app
+npm run dev
+```
+
+## Development
+
+> [!NOTE]
+> I recommend [installing `pre-commit`][pre-commit] to use the provided Git hooks.
+
+```bash
+# Install pre-commit hooks
+pre-commit install
+
+# Start dev server
+npm run dev
+
+# Lint (also includes Prettier)
+npm run lint
+
+# Build for production
+npm run build
+```
+
+## Licenses
+
+This project is licensed under the [GNU GPL v3.0][license].
+
+Based on the following course material:
+
+```txt
+╔══════════════════════════════════════════════╗
+║ "React Movie App" Labs                       ║
+╠══════════════════════════════════════════════╣
+║ Web App Development 2                        ║
+║ BSc (Hons.) Software Systems Development     ║
+║ South East Technological University          ║
+║                                              ║
+║ Lecturer: Rosanne Birney (rbirney@wit.ie)    ║
+╚══════════════════════════════════════════════╝
+```
+
+Made using the following resources:
+
+| Resource                                  | License                           |
+|:------------------------------------------|:----------------------------------|
+| [CRA to Vite guide][cra-vite]             | N/A                               |
+| [`.js` to `.jsx` script][js-jsx]          | N/A                               |
+| [Vite usage guide][vite-guide]            | [MIT][vite-license]               |
+
+[react]: https://react.dev/
+[mui]: https://mui.com/
+[tanstack]: https://tanstack.com/query/latest
+[vite]: https://vite.dev/
+[pre-commit]: https://pre-commit.com/#install
+[tmdb-key]: https://developer.themoviedb.org/docs/getting-started
+[license]: ./LICENSE
+[cra-vite]: https://medium.com/@mun1013/guide-to-migrating-from-create-react-app-cra-to-vite-5516f55aa410
 [js-jsx]: https://gist.github.com/parties/90cdf35f9a3d05bea6df76dc83a69641
 [vite-guide]: https://vite.dev/guide/
-[tan4]: https://tanstack.com/query/v4/docs/framework/react/guides/migrating-to-react-query-4
-[tan5]: https://tanstack.com/query/latest/docs/framework/react/guides/migrating-to-v5
+[vite-license]: https://github.com/vitejs/vite/blob/main/LICENSE
