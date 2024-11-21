@@ -6,11 +6,12 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import Slider from "@mui/material/Slider";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
 
-import { getGenres } from "../api/tmdb-api";
+import { getGenres, getLanguages } from "../api/tmdb-api";
 import img from "../images/pexels-dziana-hasanbekava-5480827.jpg";
 import Spinner from "./Spinner";
 
@@ -21,19 +22,34 @@ const formControl = {
 };
 
 export default function FilterMoviesCard(props) {
-  const { data, error, isLoading, isError } = useQuery({
+  const genresQuery = useQuery({
     queryKey: ["genres"],
     queryFn: getGenres,
   });
 
-  if (isLoading) {
+  const languagesQuery = useQuery({
+    queryKey: ["languages"],
+    queryFn: getLanguages,
+  });
+
+  if (genresQuery.isLoading || languagesQuery.isLoading) {
     return <Spinner />;
   }
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
+  if (genresQuery.isError) {
+    return <h1>{genresQuery.error.message}</h1>;
   }
-  const genres = data.genres;
+
+  if (languagesQuery.isError) {
+    return <h1>{languagesQuery.error.message}</h1>;
+  }
+
+  const currentYear = new Date().getFullYear();
+
+  const genres = genresQuery.data.genres;
+  const _languages = languagesQuery.data;
+  const languages = [{ iso_639_1: "all", english_name: "All" }, ..._languages];
+
   if (genres[0].name !== "All") {
     genres.unshift({ id: "0", name: "All" });
   }
@@ -47,8 +63,20 @@ export default function FilterMoviesCard(props) {
     handleChange(e, "name", e.target.value);
   };
 
+  const handleOverviewChange = (e) => {
+    handleChange(e, "overview", e.target.value);
+  };
+
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
+  };
+
+  const handleLanguageChange = (e) => {
+    handleChange(e, "language", e.target.value);
+  };
+
+  const handleYearChange = (e) => {
+    handleChange(e, "year", e.target.value);
   };
 
   return (
@@ -66,11 +94,20 @@ export default function FilterMoviesCard(props) {
         <TextField
           sx={{ ...formControl }}
           id="filled-search"
-          label="Search field"
+          label="Search title"
           type="search"
           variant="filled"
           value={props.titleFilter}
           onChange={handleTextChange}
+        />
+        <TextField
+          sx={{ ...formControl }}
+          id="filled-search"
+          label="Search overview"
+          type="search"
+          variant="filled"
+          value={props.overviewFilter}
+          onChange={handleOverviewChange}
         />
         <FormControl sx={{ ...formControl }}>
           <InputLabel id="genre-label">Genre</InputLabel>
@@ -89,6 +126,37 @@ export default function FilterMoviesCard(props) {
               );
             })}
           </Select>
+        </FormControl>
+        <FormControl sx={{ ...formControl }}>
+          <InputLabel id="og-language-label">Original Language</InputLabel>
+          <Select
+            labelId="og-language-label"
+            id="og-language-select"
+            defaultValue=""
+            value={props.languageFilter}
+            onChange={handleLanguageChange}
+          >
+            {languages.map((language) => {
+              return (
+                <MenuItem key={language.iso_639_1} value={language.iso_639_1}>
+                  {language.english_name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <FormControl sx={{ ...formControl }}>
+          <InputLabel id="year-label">Release Year</InputLabel>
+          <Slider
+            aria-labelledby="year-label"
+            id="year-slider"
+            value={props.yearFilter}
+            onChange={handleYearChange}
+            min={1895}
+            max={currentYear}
+            valueLabelDisplay="auto"
+            disableSwap
+          />
         </FormControl>
       </CardContent>
       <CardMedia sx={{ height: 300 }} image={img} title="Filter" />
