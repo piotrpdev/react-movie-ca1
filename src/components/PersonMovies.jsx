@@ -8,13 +8,13 @@ import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
-import { getMovieCredits } from "../api/tmdb-api";
+import { getPersonMovies } from "../api/tmdb-api";
 import Spinner from "./Spinner";
 
-export default function MovieCredits({ movie }) {
+export default function PersonMovies({ personDetails }) {
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: ["credits", { id: movie.id }],
-    queryFn: getMovieCredits,
+    queryKey: ["personMovies", { id: personDetails.id }],
+    queryFn: getPersonMovies,
   });
 
   if (isLoading) {
@@ -30,7 +30,7 @@ export default function MovieCredits({ movie }) {
   return (
     <>
       <Typography variant="h5" component="h3">
-        Cast
+        Movies
       </Typography>
 
       <Stack direction="row" spacing={1}>
@@ -41,19 +41,19 @@ export default function MovieCredits({ movie }) {
           >
             <CardMedia
               sx={{ height: 235 }}
-              image={`https://image.tmdb.org/t/p/w235_and_h235_face/${c.profile_path}.jpg`}
+              image={`https://image.tmdb.org/t/p/w235_and_h235_face/${c.poster_path}.jpg`}
               title={c.name}
             />
             <CardContent sx={{ marginBottom: "auto", paddingBottom: 4 }}>
               <Typography gutterBottom variant="h5" component="div">
-                {c.name}
+                {c.title}
               </Typography>
               <Typography variant="body2" sx={{ color: "text.secondary" }}>
                 {c.character}
               </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: "center" }}>
-              <Link to={`/person/${c.id}`}>
+              <Link to={`/movies/${c.id}`}>
                 <Button size="small">Learn More</Button>
               </Link>
             </CardActions>
