@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 import { getMovies } from "../api/tmdb-api";
 import AddToFavoritesIcon from "../components/CardIcons/AddToFavorites";
@@ -6,8 +7,10 @@ import Spinner from "../components/Spinner";
 import PageTemplate from "../components/TemplateMovieListPage";
 
 const HomePage = () => {
+  const [page, setPage] = useState(1);
+
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: ["discover"],
+    queryKey: ["discover", { page }],
     queryFn: getMovies,
   });
 
@@ -31,6 +34,9 @@ const HomePage = () => {
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />;
       }}
+      page={page}
+      setPage={setPage}
+      totalPages={data.total_pages}
     />
   );
 };

@@ -1,11 +1,19 @@
 import Grid from "@mui/material/Grid2";
+import Pagination from "@mui/material/Pagination";
 import { useState } from "react";
 
 import FilterCard from "./FilterMoviesCard";
 import Header from "./HeaderMovieList";
 import MovieList from "./MovieList";
 
-function MovieListPageTemplate({ movies, title, action }) {
+function MovieListPageTemplate({
+  movies,
+  title,
+  action,
+  page,
+  setPage,
+  totalPages,
+}) {
   const currentYear = new Date().getFullYear();
 
   const [nameFilter, setNameFilter] = useState("");
@@ -92,6 +100,19 @@ function MovieListPageTemplate({ movies, title, action }) {
       <Grid size={12}>
         <Header title={title} />
       </Grid>
+      {typeof totalPages === "undefined" ? null : (
+        <Grid size={12} sx={{ padding: "20px" }}>
+          <Pagination
+            sx={{ display: "flex", justifyContent: "space-around" }}
+            count={totalPages}
+            siblingCount={3}
+            size="large"
+            page={page}
+            onChange={(e, value) => setPage(value)}
+            color="primary"
+          />
+        </Grid>
+      )}
       <Grid container sx={{ flex: "1 1 500px" }}>
         <Grid
           key="find"

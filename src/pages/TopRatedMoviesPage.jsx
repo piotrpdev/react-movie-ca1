@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 import { getTopRatedMovies } from "../api/tmdb-api";
 import AddToToWatchListIcon from "../components/CardIcons/AddToToWatchList";
@@ -6,8 +7,10 @@ import Spinner from "../components/Spinner";
 import PageTemplate from "../components/TemplateMovieListPage";
 
 const TopRatedMoviesPage = () => {
+  const [page, setPage] = useState(1);
+
   const { data, error, isLoading, isError } = useQuery({
-    queryKey: ["top-rated"],
+    queryKey: ["top-rated", { page }],
     queryFn: getTopRatedMovies,
   });
 
@@ -31,6 +34,9 @@ const TopRatedMoviesPage = () => {
       action={(movie) => {
         return <AddToToWatchListIcon movie={movie} />;
       }}
+      page={page}
+      setPage={setPage}
+      totalPages={data.total_pages}
     />
   );
 };
