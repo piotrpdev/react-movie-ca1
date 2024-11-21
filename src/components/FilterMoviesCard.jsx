@@ -1,17 +1,18 @@
+import SearchIcon from "@mui/icons-material/Search";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import CardMedia from "@mui/material/CardMedia";
+import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import img from "../../images/pexels-dziana-hasanbekava-5480827.jpg";
-import { getGenres } from "../../api/tmdb-api";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../spinner";
+
+import { getGenres } from "../api/tmdb-api";
+import img from "../images/pexels-dziana-hasanbekava-5480827.jpg";
+import Spinner from "./Spinner";
 
 const formControl = {
   margin: 1,

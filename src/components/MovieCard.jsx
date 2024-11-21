@@ -1,19 +1,20 @@
-import { useContext } from "react";
+import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import StarRateIcon from "@mui/icons-material/StarRate";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
-import StarRateIcon from "@mui/icons-material/StarRate";
+import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid2";
-import img from "../../images/film-poster-placeholder.png";
+import Typography from "@mui/material/Typography";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
-import { MoviesContext } from "../../contexts/moviesContext";
+
+import { MoviesContext } from "../contexts/MoviesContext";
+import img from "../images/film-poster-placeholder.png";
 
 export default function MovieCard({ movie, action }) {
   const { favorites } = useContext(MoviesContext);

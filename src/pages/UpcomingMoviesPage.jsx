@@ -1,8 +1,9 @@
-import { getUpcomingMovies } from "../api/tmdb-api";
-import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../components/spinner";
-import AddToToWatchListIcon from "../components/cardIcons/addToToWatchList";
+
+import { getUpcomingMovies } from "../api/tmdb-api";
+import AddToToWatchListIcon from "../components/CardIcons/AddToToWatchList";
+import Spinner from "../components/Spinner";
+import PageTemplate from "../components/TemplateMovieListPage";
 
 const UpcomingMovesPage = () => {
   const { data, error, isLoading, isError } = useQuery({

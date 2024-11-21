@@ -1,7 +1,8 @@
-import { useContext } from "react";
-import { MoviesContext } from "../../contexts/moviesContext";
-import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import IconButton from "@mui/material/IconButton";
+import { useContext } from "react";
+
+import { MoviesContext } from "../../contexts/MoviesContext";
 
 const AddToFavoritesIcon = ({ movie }) => {
   const context = useContext(MoviesContext);

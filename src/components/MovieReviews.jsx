@@ -1,15 +1,16 @@
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
-import { getMovieReviews } from "../../api/tmdb-api";
-import { excerpt } from "../../util";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../spinner";
+import { Link } from "react-router-dom";
+
+import { getMovieReviews } from "../api/tmdb-api";
+import { excerpt } from "../util";
+import Spinner from "./Spinner";
 
 export default function MovieReviews({ movie }) {
   const { data, error, isLoading, isError } = useQuery({

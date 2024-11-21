@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
-import MovieDetails from "../components/movieDetails/";
-import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from "../api/tmdb-api";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../components/spinner";
+import { useParams } from "react-router-dom";
+
+import { getMovie } from "../api/tmdb-api";
+import MovieDetails from "../components/MovieDetails";
+import Spinner from "../components/Spinner";
+import PageTemplate from "../components/TemplateMoviePage";
 // import useMovie from "../hooks/useMovie";   Redundant
 
 const MoviePage = () => {

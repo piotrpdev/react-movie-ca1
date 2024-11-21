@@ -1,9 +1,10 @@
-import PageTemplate from "../components/templateMoviePage";
-import ReviewForm from "../components/reviewForm";
-import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
+
 import { getMovie } from "../api/tmdb-api";
-import Spinner from "../components/spinner";
+import ReviewForm from "../components/ReviewForm";
+import Spinner from "../components/Spinner";
+import PageTemplate from "../components/TemplateMoviePage";
 
 const WriteReviewPage = () => {
   const location = useLocation();

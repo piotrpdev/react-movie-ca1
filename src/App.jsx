@@ -1,15 +1,15 @@
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
-import HomePage from "./pages/homePage";
-import MoviePage from "./pages/movieDetailsPage";
-import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
-import MovieReviewPage from "./pages/movieReviewPage";
-import SiteHeader from "./components/siteHeader";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import MoviesContextProvider from "./contexts/moviesContextProvider";
-import AddMovieReviewPage from "./pages/addMovieReviewPage";
-import UpcomingMovesPage from "./pages/upcomingMoviesPage";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
+import SiteHeader from "./components/SiteHeader";
+import MoviesContextProvider from "./contexts/MoviesContextProvider";
+import AddMovieReviewPage from "./pages/AddMovieReviewPage";
+import FavoriteMoviesPage from "./pages/FavoriteMoviesPage";
+import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MovieDetailsPage";
+import MovieReviewPage from "./pages/MovieReviewPage";
+import UpcomingMovesPage from "./pages/UpcomingMoviesPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +21,6 @@ const queryClient = new QueryClient({
   },
 });
 
-// eslint-disable-next-line react-refresh/only-export-components
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -44,5 +43,4 @@ const App = () => {
   );
 };
 
-const rootElement = createRoot(document.getElementById("root"));
-rootElement.render(<App />);
+export default App;

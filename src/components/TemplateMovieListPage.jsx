@@ -1,8 +1,9 @@
-import { useState } from "react";
-import Header from "../headerMovieList";
-import FilterCard from "../filterMoviesCard";
-import MovieList from "../movieList";
 import Grid from "@mui/material/Grid2";
+import { useState } from "react";
+
+import FilterCard from "./FilterMoviesCard";
+import Header from "./HeaderMovieList";
+import MovieList from "./MovieList";
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");

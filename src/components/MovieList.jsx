@@ -1,5 +1,6 @@
-import Movie from "../movieCard/";
 import Grid from "@mui/material/Grid2";
+
+import Movie from "./MovieCard";
 
 const MovieList = (props) => {
   let movieCards = props.movies.map((m) => (

@@ -1,13 +1,13 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Paper from "@mui/material/Paper";
+import HomeIcon from "@mui/icons-material/Home";
 import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
-const Header = (props) => {
-  const title = props.title;
-
+const MovieHeader = (props) => {
+  const movie = props.movie;
   const navigate = useNavigate();
 
   return (
@@ -17,7 +17,8 @@ const Header = (props) => {
         display: "flex",
         justifyContent: "space-around",
         flexWrap: "wrap",
-        marginBottom: 1.5,
+        padding: 1.5,
+        margin: 0,
       }}
     >
       <IconButton aria-label="go back" onClick={() => navigate(-1)}>
@@ -25,8 +26,14 @@ const Header = (props) => {
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {title}
+        {movie.title}
+        <a href={movie.homepage}>
+          <HomeIcon color="primary" />
+        </a>
+        <br />
+        <span>{`   "${movie.tagline}"`} </span>
       </Typography>
+
       <IconButton aria-label="go forward" onClick={() => navigate(+1)}>
         <ArrowForwardIcon color="primary" fontSize="large" />
       </IconButton>
@@ -34,4 +41,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default MovieHeader;

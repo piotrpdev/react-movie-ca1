@@ -1,10 +1,11 @@
-import MovieHeader from "../headerMovie";
 import Grid from "@mui/material/Grid2";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { getMovieImages } from "../../api/tmdb-api";
 import { useQuery } from "@tanstack/react-query";
-import Spinner from "../spinner";
+
+import { getMovieImages } from "../api/tmdb-api";
+import MovieHeader from "./HeaderMovie";
+import Spinner from "./Spinner";
 
 const TemplateMoviePage = ({ movie, children }) => {
   const { data, error, isLoading, isError } = useQuery({
