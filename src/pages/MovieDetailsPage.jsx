@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 import { getMovie } from "../api/tmdb-api";
+import MovieCast from "../components/MovieCast";
 import MovieDetails from "../components/MovieDetails";
 import Spinner from "../components/Spinner";
 import PageTemplate from "../components/TemplateMoviePage";
@@ -33,6 +34,7 @@ const MoviePage = () => {
         <>
           <PageTemplate movie={movie}>
             <MovieDetails movie={movie} />
+            <MovieCast movie={movie} />
           </PageTemplate>
         </>
       ) : (
