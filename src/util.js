@@ -1,8 +1,5 @@
-import truncate from "lodash/truncate";
-
-export function excerpt(string) {
-  return truncate(string, {    
-    length: 400, // maximum 400 characters
-    separator: /,?\.* +/, // separate by spaces, including preceding commas and periods
-  });
-}
+// Copied from this StackOverflow answer: https://stackoverflow.com/a/57688223/19020549
+export const excerpt = (string = '', maxLength = 400) => 
+  string.length > maxLength 
+    ? `${string.substring(0, maxLength)}…`
+    : string
