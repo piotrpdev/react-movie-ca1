@@ -13,7 +13,10 @@ const MoviePage = () => {
     error,
     isLoading,
     isError,
-  } = useQuery(["movie", { id: id }], getMovie);
+  } = useQuery({
+    queryKey: ["movie", { id: id }],
+    queryFn: getMovie,
+  });
 
   if (isLoading) {
     return <Spinner />;

@@ -12,10 +12,10 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../spinner";
 
 export default function MovieReviews({ movie }) {
-  const { data, error, isLoading, isError } = useQuery(
-    ["reviews", { id: movie.id }],
-    getMovieReviews,
-  );
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ["reviews", { id: movie.id }],
+    queryFn: getMovieReviews,
+  });
 
   if (isLoading) {
     return <Spinner />;

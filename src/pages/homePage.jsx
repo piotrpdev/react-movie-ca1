@@ -5,7 +5,10 @@ import Spinner from "../components/spinner";
 import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const HomePage = () => {
-  const { data, error, isLoading, isError } = useQuery(["discover"], getMovies);
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ["discover"],
+    queryFn: getMovies,
+  });
 
   if (isLoading) {
     return <Spinner />;

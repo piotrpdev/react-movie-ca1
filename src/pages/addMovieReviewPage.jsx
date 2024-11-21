@@ -14,7 +14,10 @@ const WriteReviewPage = () => {
     error,
     isLoading,
     isError,
-  } = useQuery(["movie", { id: movieId }], getMovie);
+  } = useQuery({
+    queryKey: ["movie", { id: movieId }],
+    queryFn: getMovie,
+  });
 
   if (isLoading) {
     return <Spinner />;

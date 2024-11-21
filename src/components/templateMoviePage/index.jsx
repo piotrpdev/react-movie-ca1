@@ -7,10 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../spinner";
 
 const TemplateMoviePage = ({ movie, children }) => {
-  const { data, error, isLoading, isError } = useQuery(
-    ["images", { id: movie.id }],
-    getMovieImages,
-  );
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ["images", { id: movie.id }],
+    queryFn: getMovieImages,
+  });
 
   if (isLoading) {
     return <Spinner />;

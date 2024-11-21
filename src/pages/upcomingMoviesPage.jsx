@@ -5,10 +5,10 @@ import Spinner from "../components/spinner";
 import AddToToWatchListIcon from "../components/cardIcons/addToToWatchList";
 
 const UpcomingMovesPage = () => {
-  const { data, error, isLoading, isError } = useQuery(
-    ["upcoming"],
-    getUpcomingMovies,
-  );
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ["upcoming"],
+    queryFn: getUpcomingMovies,
+  });
 
   if (isLoading) {
     return <Spinner />;
