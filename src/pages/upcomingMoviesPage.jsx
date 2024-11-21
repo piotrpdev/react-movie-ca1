@@ -1,12 +1,12 @@
 import { getUpcomingMovies } from "../api/tmdb-api";
 import PageTemplate from "../components/templateMovieListPage";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
 import AddToToWatchListIcon from "../components/cardIcons/addToToWatchList";
 
 const UpcomingMovesPage = () => {
   const { data, error, isLoading, isError } = useQuery(
-    "upcoming",
+    ["upcoming"],
     getUpcomingMovies,
   );
 
