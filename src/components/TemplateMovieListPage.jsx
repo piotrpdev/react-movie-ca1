@@ -13,6 +13,7 @@ function MovieListPageTemplate({ movies, title, action }) {
   const [genreFilter, setGenreFilter] = useState("0");
   const [languageFilter, setLanguageFilter] = useState("all");
   const [yearFilter, setYearFilter] = useState([1895, currentYear]);
+  const [movieSort, setMovieSort] = useState("none");
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
@@ -35,6 +36,30 @@ function MovieListPageTemplate({ movies, title, action }) {
     .filter((m) => {
       const release_year = m.release_date.split("-")[0];
       return release_year >= yearFilter[0] && release_year <= yearFilter[1];
+    })
+    .sort((a, b) => {
+      switch (movieSort) {
+        case "popularity-asc":
+          return a.popularity - b.popularity;
+        case "popularity-desc":
+          return b.popularity - a.popularity;
+        case "vote_average-asc":
+          return a.vote_average - b.vote_average;
+        case "vote_average-desc":
+          return b.vote_average - a.vote_average;
+        case "release_year-asc":
+          return (
+            Number(a.release_date.split("-")[0]) -
+            Number(b.release_date.split("-")[0])
+          );
+        case "release_year-desc":
+          return (
+            Number(b.release_date.split("-")[0]) -
+            Number(a.release_date.split("-")[0])
+          );
+        default:
+          return 0;
+      }
     });
 
   const handleChange = (type, value) => {
@@ -53,6 +78,9 @@ function MovieListPageTemplate({ movies, title, action }) {
         break;
       case "year":
         setYearFilter(value);
+        break;
+      case "sort":
+        setMovieSort(value);
         break;
       default:
         break;
@@ -77,6 +105,7 @@ function MovieListPageTemplate({ movies, title, action }) {
             languageFilter={languageFilter}
             overviewFilter={overviewFilter}
             yearFilter={yearFilter}
+            sort={movieSort}
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>

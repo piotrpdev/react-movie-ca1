@@ -21,6 +21,16 @@ const formControl = {
   backgroundColor: "rgb(255, 255, 255)",
 };
 
+const sortOptions = [
+  { value: "none", label: "None" },
+  { value: "popularity-asc", label: "Popularity (Ascending)" },
+  { value: "popularity-desc", label: "Popularity (Descending)" },
+  { value: "vote_average-asc", label: "Rating (Ascending)" },
+  { value: "vote_average-desc", label: "Rating (Descending)" },
+  { value: "release_year-asc", label: "Release Year (Ascending)" },
+  { value: "release_year-desc", label: "Release Year (Descending)" },
+];
+
 export default function FilterMoviesCard(props) {
   const genresQuery = useQuery({
     queryKey: ["genres"],
@@ -77,6 +87,10 @@ export default function FilterMoviesCard(props) {
 
   const handleYearChange = (e) => {
     handleChange(e, "year", e.target.value);
+  };
+
+  const handleSortChange = (e) => {
+    handleChange(e, "sort", e.target.value);
   };
 
   return (
@@ -158,8 +172,26 @@ export default function FilterMoviesCard(props) {
             disableSwap
           />
         </FormControl>
+        <FormControl sx={{ ...formControl }}>
+          <InputLabel id="sort-label">Original Language</InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            defaultValue=""
+            value={props.sort}
+            onChange={handleSortChange}
+          >
+            {sortOptions.map((option) => {
+              return (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
       </CardContent>
-      <CardMedia sx={{ height: 300 }} image={img} title="Filter" />
+      <CardMedia sx={{ height: 162 }} image={img} title="Filter" />
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
