@@ -9,10 +9,12 @@ const WriteReviewPage = () => {
   const location = useLocation();
   const movieId = location.state.movieId;
 
-  const { data: movie, error, isLoading, isError } = useQuery(
-    ["movie", { id: movieId }],
-    getMovie
-  );
+  const {
+    data: movie,
+    error,
+    isLoading,
+    isError,
+  } = useQuery(["movie", { id: movieId }], getMovie);
 
   if (isLoading) {
     return <Spinner />;
