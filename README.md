@@ -71,6 +71,10 @@ Made using the following resources:
 | [CRA to Vite guide][cra-vite]             | N/A                               |
 | [`.js` to `.jsx` script][js-jsx]          | N/A                               |
 | [Vite usage guide][vite-guide]            | [MIT][vite-license]               |
+| [Supabase React quickstart][supa-start]   | N/A                               |
+| [WebGradients][gradient]                  | N/A[^1]                           |
+
+[^1]: *"Free for commercial or personal use by [Dima Braven][dima]"*.
 
 [react]: https://react.dev/
 [mui]: https://mui.com/
@@ -83,3 +87,6 @@ Made using the following resources:
 [js-jsx]: https://gist.github.com/parties/90cdf35f9a3d05bea6df76dc83a69641
 [vite-guide]: https://vite.dev/guide/
 [vite-license]: https://github.com/vitejs/vite/blob/main/LICENSE
+[supa-start]: https://supabase.com/docs/guides/auth/quickstarts/react
+[gradient]: https://webgradients.com/
+[dima]: https://twitter.com/dimabraven
