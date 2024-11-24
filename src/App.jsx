@@ -46,38 +46,32 @@ const App = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  if (!session) {
-    return <SignInPage supabaseClient={supabase} />;
-  } else {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <SiteHeader />
-          <MoviesContextProvider>
-            <Routes>
-              <Route
-                path="/movies/favorites"
-                element={<FavoriteMoviesPage />}
-              />
-              <Route path="/reviews/:id" element={<MovieReviewPage />} />
-              <Route path="/movies/:id" element={<MoviePage />} />
-              <Route path="/" element={<HomePage />} />
-              <Route path="*" element={<Navigate to="/" />} />
-              <Route path="/reviews/form" element={<AddMovieReviewPage />} />
-              <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
-              <Route path="/movies/trending" element={<TrendingMoviesPage />} />
-              <Route
-                path="/movies/top-rated"
-                element={<TopRatedMoviesPage />}
-              />
-              <Route path="/person/:id" element={<PersonDetailsPage />} />
-            </Routes>
-          </MoviesContextProvider>
-        </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    );
-  }
+  return (
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <SiteHeader session={session} />
+        <MoviesContextProvider>
+          <Routes>
+            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+            <Route path="/reviews/:id" element={<MovieReviewPage />} />
+            <Route path="/movies/:id" element={<MoviePage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+            <Route
+              path="/reviews/form"
+              element={<AddMovieReviewPage session={session} />}
+            />
+            <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+            <Route path="/movies/trending" element={<TrendingMoviesPage />} />
+            <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
+            <Route path="/person/:id" element={<PersonDetailsPage />} />
+            <Route path="/signIn" element={<SignInPage />} />
+          </Routes>
+        </MoviesContextProvider>
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;

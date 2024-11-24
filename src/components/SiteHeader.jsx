@@ -16,7 +16,7 @@ import { supabase } from "../supabaseClient";
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
-const SiteHeader = () => {
+const SiteHeader = ({ session }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -31,14 +31,27 @@ const SiteHeader = () => {
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Trending", path: "/movies/trending" },
     { label: "Top Rated", path: "/movies/top-rated" },
-    { label: "Sign Out", path: "#signOut" },
   ];
 
-  const handleMenuSelect = (pageURL) => {
+  if (session) {
+    menuOptions.push({ label: "Sign Out", path: "#signOut" });
+  } else {
+    menuOptions.push({ label: "Sign In", path: "#signIn" });
+  }
+
+  const handleMenuSelect = async (pageURL) => {
     if (pageURL === "#signOut") {
       supabase.auth.signOut();
       return;
     }
+
+    if (pageURL === "#signIn") {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "github",
+      });
+      return;
+    }
+
     navigate(pageURL, { replace: true });
   };
 

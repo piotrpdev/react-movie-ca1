@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 import { getMovie } from "../api/tmdb-api";
 import ReviewForm from "../components/ReviewForm";
 import Spinner from "../components/Spinner";
 import PageTemplate from "../components/TemplateMoviePage";
 
-const WriteReviewPage = () => {
+const WriteReviewPage = ({ session }) => {
   const location = useLocation();
   const movieId = location.state.movieId;
 
@@ -19,6 +19,10 @@ const WriteReviewPage = () => {
     queryKey: ["movie", { id: movieId }],
     queryFn: getMovie,
   });
+
+  if (!session) {
+    return <Navigate to="/signIn" replace />;
+  }
 
   if (isLoading) {
     return <Spinner />;

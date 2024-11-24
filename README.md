@@ -75,6 +75,10 @@ npm run build
 
 ## Routing (new)
 
+> [!NOTE]
+> `/reviews/form` is the only protected route i.e. only signed in users can
+> create reviews.
+
 | Route                 | Description                   |
 |-----------------------|-------------------------------|
 | `/movies/trending`    | Trending Movies               |
@@ -106,7 +110,7 @@ Made using the following resources:
 | [CRA to Vite guide][cra-vite]             | N/A                               |
 | [`.js` to `.jsx` script][js-jsx]          | N/A                               |
 | [Vite usage guide][vite-guide]            | [MIT][vite-license]               |
-| [Supabase React quickstart][supa-start]   | [Apache 2.0][supa-license]            |
+| [Supabase React quickstart][supa-start]   | [Apache 2.0][supa-license]        |
 | [WebGradients][gradient]                  | N/A[^1]                           |
 
 [^1]: *"Free for commercial or personal use by [Dima Braven][dima]"*.

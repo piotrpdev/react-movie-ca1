@@ -4,10 +4,12 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 
-const SignInPage = ({ supabaseClient }) => {
+import { supabase } from "../supabaseClient";
+
+const SignInPage = () => {
   const [error, setError] = useState(null);
   async function signInWithGithub() {
-    const { error } = await supabaseClient.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "github",
     });
     if (error) setError(error.message);
