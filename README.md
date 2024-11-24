@@ -18,6 +18,7 @@
 - [x] Added ability to filter movies by original language and release year range.
   - [x] The release year range filter uses the [Slider] component.
 - [x] Added ability to sort movies asc/desc by popularity, rating, and release year.
+- [x] Replaced rating dropdown with [Rating][rating] component in review form.
 
 ## Usage
 
@@ -123,6 +124,7 @@ Made using the following resources:
 [tmdb-key]: https://developer.themoviedb.org/docs/getting-started
 [supa]: https://supabase.com/
 [slider]: https://mui.com/material-ui/react-slider/#range-slider
+[rating]: https://mui.com/material-ui/react-rating/
 [setup.sql]: ./setup.sql
 [license]: ./LICENSE
 [cra-vite]: https://medium.com/@mun1013/guide-to-migrating-from-create-react-app-cra-to-vite-5516f55aa410

@@ -1,39 +1,24 @@
+import StarIcon from "@mui/icons-material/Star";
 import MuiAlert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
+import Rating from "@mui/material/Rating";
 import Snackbar from "@mui/material/Snackbar";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { MoviesContext } from "../contexts/MoviesContext";
 import { supabase } from "../supabaseClient";
 
-const ratings = [
-  {
-    value: 5,
-    label: "Excellent",
-  },
-  {
-    value: 4,
-    label: "Good",
-  },
-  {
-    value: 3,
-    label: "Average",
-  },
-  {
-    value: 2,
-    label: "Poor",
-  },
-  {
-    value: 0,
-    label: "Terrible",
-  },
-];
+const labels = {
+  1: "Terrible",
+  2: "Poor",
+  3: "Average",
+  4: "Good",
+  5: "Excellent",
+};
 
 const styles = {
   root: {
@@ -63,7 +48,7 @@ const styles = {
 };
 
 const ReviewForm = ({ movie }) => {
-  const context = useContext(MoviesContext);
+  const [hover, setHover] = useState(-1);
   const [rating, setRating] = useState(3);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -72,7 +57,7 @@ const ReviewForm = ({ movie }) => {
     author: "",
     review: "",
     agree: false,
-    rating: "3",
+    rating: 3,
   };
 
   const {
@@ -88,7 +73,8 @@ const ReviewForm = ({ movie }) => {
   };
 
   const handleRatingChange = (event) => {
-    setRating(event.target.value);
+    console.log(event.target.value);
+    setRating(Number(event.target.value));
   };
 
   const onSubmit = async (review) => {
@@ -167,21 +153,25 @@ const ReviewForm = ({ movie }) => {
           control={control}
           name="rating"
           render={() => (
-            <TextField
-              id="select-rating"
-              select
-              variant="outlined"
-              label="Rating Select"
-              value={rating}
-              onChange={handleRatingChange}
-              helperText="Don't forget your rating"
-            >
-              {ratings.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+            <Box sx={{ width: 200, display: "flex", alignItems: "center" }}>
+              <Rating
+                id="select-rating"
+                name="select-rating"
+                value={rating}
+                onChange={handleRatingChange}
+                onChangeActive={(_, newHover) => {
+                  setHover(newHover);
+                }}
+                emptyIcon={
+                  <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                }
+              />
+              {rating !== null && (
+                <Box sx={{ ml: 2 }}>
+                  {labels[hover !== -1 ? hover : rating]}
+                </Box>
+              )}
+            </Box>
           )}
         />
 

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { getMovie } from "../api/tmdb-api";
 import ReviewForm from "../components/ReviewForm";
@@ -20,9 +20,10 @@ const WriteReviewPage = ({ session }) => {
     queryFn: getMovie,
   });
 
-  if (!session) {
-    return <Navigate to="/signIn" replace />;
-  }
+  // TODO: Uncomment this
+  // if (!session) {
+  //   return <Navigate to="/signIn" replace />;
+  // }
 
   if (isLoading) {
     return <Spinner />;
