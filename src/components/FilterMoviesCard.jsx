@@ -7,6 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
+import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
@@ -18,7 +19,7 @@ import Spinner from "./Spinner";
 const formControl = {
   margin: 1,
   minWidth: 220,
-  backgroundColor: "rgb(255, 255, 255)",
+  // backgroundColor: "rgb(255, 255, 255)",
 };
 
 const sortOptions = [
@@ -95,101 +96,119 @@ export default function FilterMoviesCard(props) {
 
   return (
     <Card
-      sx={{
-        backgroundColor: "rgb(204, 204, 0)",
-      }}
+      sx={
+        {
+          // textAlign: "center",
+        }
+      }
       variant="outlined"
     >
       <CardContent>
-        <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
-          Filter the movies.
-        </Typography>
-        <TextField
-          sx={{ ...formControl }}
-          id="filled-search"
-          label="Search title"
-          type="search"
-          variant="filled"
-          value={props.titleFilter}
-          onChange={handleTextChange}
-        />
-        <TextField
-          sx={{ ...formControl }}
-          id="filled-search"
-          label="Search overview"
-          type="search"
-          variant="filled"
-          value={props.overviewFilter}
-          onChange={handleOverviewChange}
-        />
-        <FormControl sx={{ ...formControl }}>
-          <InputLabel id="genre-label">Genre</InputLabel>
-          <Select
-            labelId="genre-label"
-            id="genre-select"
-            defaultValue=""
-            value={props.genreFilter}
-            onChange={handleGenreChange}
-          >
-            {genres.map((genre) => {
-              return (
-                <MenuItem key={genre.id} value={genre.id}>
-                  {genre.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ ...formControl }}>
-          <InputLabel id="og-language-label">Original Language</InputLabel>
-          <Select
-            labelId="og-language-label"
-            id="og-language-select"
-            defaultValue=""
-            value={props.languageFilter}
-            onChange={handleLanguageChange}
-          >
-            {languages.map((language) => {
-              return (
-                <MenuItem key={language.iso_639_1} value={language.iso_639_1}>
-                  {language.english_name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ ...formControl }}>
-          <InputLabel id="year-label">Release Year</InputLabel>
-          <Slider
-            aria-labelledby="year-label"
-            id="year-slider"
-            value={props.yearFilter}
-            onChange={handleYearChange}
-            min={1895}
-            max={currentYear}
-            valueLabelDisplay="auto"
-            disableSwap
+        <Stack>
+          <Typography variant="h5" component="h1">
+            <SearchIcon fontSize="large" />
+            Filter the movies.
+          </Typography>
+          <TextField
+            sx={{ ...formControl }}
+            id="filled-search"
+            label="Search title"
+            type="search"
+            variant="filled"
+            value={props.titleFilter}
+            onChange={handleTextChange}
+            autoWidth
           />
-        </FormControl>
-        <FormControl sx={{ ...formControl }}>
-          <InputLabel id="sort-label">Sort by</InputLabel>
-          <Select
-            labelId="sort-label"
-            id="sort-select"
-            defaultValue=""
-            value={props.sort}
-            onChange={handleSortChange}
+          <TextField
+            sx={{ ...formControl }}
+            id="filled-search"
+            label="Search overview"
+            type="search"
+            variant="filled"
+            value={props.overviewFilter}
+            onChange={handleOverviewChange}
+          />
+          <FormControl sx={{ ...formControl }}>
+            <InputLabel id="genre-label">Genre</InputLabel>
+            <Select
+              labelId="genre-label"
+              label="Genre"
+              id="genre-select"
+              defaultValue=""
+              value={props.genreFilter}
+              onChange={handleGenreChange}
+            >
+              {genres.map((genre) => {
+                return (
+                  <MenuItem key={genre.id} value={genre.id}>
+                    {genre.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <FormControl sx={{ ...formControl }}>
+            <InputLabel id="og-language-label">Original Language</InputLabel>
+            <Select
+              labelId="og-language-label"
+              id="og-language-select"
+              label="Original Language"
+              defaultValue=""
+              value={props.languageFilter}
+              onChange={handleLanguageChange}
+            >
+              {languages.map((language) => {
+                return (
+                  <MenuItem key={language.iso_639_1} value={language.iso_639_1}>
+                    {language.english_name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <FormControl
+            sx={{ paddingLeft: "15px", paddingRight: "15px", ...formControl }}
           >
-            {sortOptions.map((option) => {
-              return (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
+            <Typography
+              id="year-label"
+              variant="caption"
+              color="textSecondary"
+              gutterBottom
+            >
+              Release Year
+            </Typography>
+            <Slider
+              // sx={{ marginLeft: "0px" }}
+              aria-labelledby="year-label"
+              id="year-slider"
+              value={props.yearFilter}
+              onChange={handleYearChange}
+              min={1895}
+              max={currentYear}
+              valueLabelDisplay="auto"
+              disableSwap
+            />
+          </FormControl>
+          <FormControl sx={{ ...formControl }}>
+            <InputLabel id="sort-label">Sort by</InputLabel>
+            <Select
+              labelId="sort-label"
+              id="sort-select"
+              label="Sort by"
+              defaultValue=""
+              value={props.sort}
+              onChange={handleSortChange}
+            >
+              {sortOptions.map((option) => {
+                return (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </Stack>
       </CardContent>
       <CardMedia sx={{ height: 162 }} image={img} title="Filter" />
       <CardContent>

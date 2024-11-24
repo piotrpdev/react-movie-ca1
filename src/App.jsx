@@ -1,5 +1,7 @@
 import "./App.css";
 
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect, useState } from "react";
@@ -18,6 +20,12 @@ import TopRatedMoviesPage from "./pages/TopRatedMoviesPage";
 import TrendingMoviesPage from "./pages/TrendingMoviesPage";
 import UpcomingMoviesPage from "./pages/UpcomingMoviesPage";
 import { supabase } from "./supabaseClient";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,27 +56,36 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <SiteHeader session={session} />
-        <MoviesContextProvider>
-          <Routes>
-            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
-            <Route path="/reviews/:id" element={<MovieReviewPage />} />
-            <Route path="/movies/:id" element={<MoviePage />} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="*" element={<Navigate to="/" />} />
-            <Route
-              path="/reviews/form"
-              element={<AddMovieReviewPage session={session} />}
-            />
-            <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
-            <Route path="/movies/trending" element={<TrendingMoviesPage />} />
-            <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
-            <Route path="/person/:id" element={<PersonDetailsPage />} />
-            <Route path="/signIn" element={<SignInPage />} />
-          </Routes>
-        </MoviesContextProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <SiteHeader session={session} />
+          <MoviesContextProvider>
+            <Routes>
+              <Route
+                path="/movies/favorites"
+                element={<FavoriteMoviesPage />}
+              />
+              <Route path="/reviews/:id" element={<MovieReviewPage />} />
+              <Route path="/movies/:id" element={<MoviePage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<Navigate to="/" />} />
+              <Route
+                path="/reviews/form"
+                element={<AddMovieReviewPage session={session} />}
+              />
+              <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+              <Route path="/movies/trending" element={<TrendingMoviesPage />} />
+              <Route
+                path="/movies/top-rated"
+                element={<TopRatedMoviesPage />}
+              />
+              <Route path="/person/:id" element={<PersonDetailsPage />} />
+              <Route path="/signIn" element={<SignInPage />} />
+            </Routes>
+          </MoviesContextProvider>
+        </BrowserRouter>
+      </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

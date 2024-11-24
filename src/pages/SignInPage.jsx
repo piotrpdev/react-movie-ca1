@@ -33,7 +33,7 @@ const SignInPage = () => {
         size="large"
         startIcon={<GitHubIcon />}
         onClick={signInWithGithub}
-        sx={{ textTransform: "none" }}
+        sx={{ textTransform: "none", color: "white" }}
       >
         Sign in with Github
       </Button>

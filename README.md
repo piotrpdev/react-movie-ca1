@@ -19,6 +19,7 @@
   - [x] The release year range filter uses the [Slider] component.
 - [x] Added ability to sort movies asc/desc by popularity, rating, and release year.
 - [x] Replaced rating dropdown with [Rating][rating] component in review form.
+- [x] Switched to using Dark Mode for nicer aesthetics.
 
 ## Usage
 
