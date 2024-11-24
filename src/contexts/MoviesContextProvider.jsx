@@ -5,12 +5,6 @@ import { MoviesContext } from "./MoviesContext";
 const MoviesContextProvider = (props) => {
   const [favorites, setFavorites] = useState([]);
   const [toWatchMovies, setToWatchMovies] = useState([]);
-  const [myReviews, setMyReviews] = useState({});
-
-  const addReview = (movie, review) => {
-    setMyReviews({ ...myReviews, [movie.id]: review });
-  };
-  //console.log(myReviews);
 
   const addToFavorites = (movie) => {
     let newFavorites = [];
@@ -48,7 +42,6 @@ const MoviesContextProvider = (props) => {
         favorites,
         addToFavorites,
         removeFromFavorites,
-        addReview,
         toWatchMovies,
         addToToWatchMovies,
         removeFromToWatchMovies,

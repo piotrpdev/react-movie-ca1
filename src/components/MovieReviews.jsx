@@ -6,17 +6,43 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { getMovieReviews } from "../api/tmdb-api";
+import { supabase } from "../supabaseClient";
 import { excerpt } from "../util";
 import Spinner from "./Spinner";
 
 export default function MovieReviews({ movie }) {
+  const [ourReviews, setOurReviews] = useState([]);
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["reviews", { id: movie.id }],
     queryFn: getMovieReviews,
   });
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const { data, error } = await supabase
+        .from("reviews")
+        .select(
+          `
+          *,
+          profiles (
+            name
+          )
+      `,
+        )
+        .eq("movieId", movie.id);
+      if (error) {
+        console.error("Error fetching reviews", error);
+        return;
+      }
+      setOurReviews(data);
+    };
+
+    fetchReviews();
+  }, []);
 
   if (isLoading) {
     return <Spinner />;
@@ -50,6 +76,28 @@ export default function MovieReviews({ movie }) {
                   to={`/reviews/${r.id}`}
                   state={{
                     review: r,
+                    movie: movie,
+                  }}
+                >
+                  Full Review
+                </Link>
+              </TableCell>
+            </TableRow>
+          ))}
+          {ourReviews.map((r) => (
+            <TableRow key={r.id}>
+              <TableCell component="th" scope="row">
+                {r.profiles.name}
+              </TableCell>
+              <TableCell>{excerpt(r.review)}</TableCell>
+              <TableCell>
+                <Link
+                  to={`/reviews/${r.id}`}
+                  state={{
+                    review: {
+                      author: r.profiles.name,
+                      content: r.review,
+                    },
                     movie: movie,
                   }}
                 >

@@ -10,6 +10,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { MoviesContext } from "../contexts/MoviesContext";
+import { supabase } from "../supabaseClient";
 
 const ratings = [
   {
@@ -90,11 +91,21 @@ const ReviewForm = ({ movie }) => {
     setRating(event.target.value);
   };
 
-  const onSubmit = (review) => {
+  const onSubmit = async (review) => {
     review.movieId = movie.id;
     review.rating = rating;
-    // console.log(review);
-    context.addReview(movie, review);
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const { error } = await supabase.from("reviews").insert({
+      movieId: movie.id,
+      author: user.id,
+      review: review.review,
+      rating: review.rating,
+    });
+
     setOpen(true); // NEW
   };
 
@@ -122,31 +133,6 @@ const ReviewForm = ({ movie }) => {
       </Snackbar>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Controller
-          name="author"
-          control={control}
-          rules={{ required: "Name is required" }}
-          defaultValue=""
-          render={({ field: { onChange, value } }) => (
-            <TextField
-              sx={{ width: "40ch" }}
-              variant="outlined"
-              margin="normal"
-              required
-              onChange={onChange}
-              value={value}
-              id="author"
-              label="Author's name"
-              name="author"
-              autoFocus
-            />
-          )}
-        />
-        {errors.author && (
-          <Typography variant="h6" component="p">
-            {errors.author.message}
-          </Typography>
-        )}
         <Controller
           name="review"
           control={control}
