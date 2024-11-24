@@ -17,6 +17,7 @@ import MovieReviewPage from "./pages/MovieReviewPage";
 import PersonDetailsPage from "./pages/PersonDetailsPage";
 import SignInPage from "./pages/SignInPage";
 import TopRatedMoviesPage from "./pages/TopRatedMoviesPage";
+import ToWatchMoviesPage from "./pages/ToWatchMoviesPage";
 import TrendingMoviesPage from "./pages/TrendingMoviesPage";
 import UpcomingMoviesPage from "./pages/UpcomingMoviesPage";
 import { supabase } from "./supabaseClient";
@@ -82,6 +83,7 @@ const App = () => {
               />
               <Route path="/person/:id" element={<PersonDetailsPage />} />
               <Route path="/signIn" element={<SignInPage />} />
+              <Route path="/movies/to-watch" element={<ToWatchMoviesPage />} />
             </Routes>
           </MoviesContextProvider>
         </BrowserRouter>
