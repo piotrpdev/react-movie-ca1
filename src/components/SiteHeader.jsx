@@ -96,6 +96,7 @@ const SiteHeader = ({ session }) => {
                 {menuOptions.map((opt) => (
                   <MenuItem
                     key={opt.label}
+                    divider="true"
                     onClick={() => handleMenuSelect(opt.path)}
                   >
                     {opt.label}

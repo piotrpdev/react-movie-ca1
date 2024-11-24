@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getTrendingMovies } from "../api/tmdb-api";
+import AddToFavoritesIcon from "../components/CardIcons/AddToFavorites";
 import AddToToWatchListIcon from "../components/CardIcons/AddToToWatchList";
 import Spinner from "../components/Spinner";
 import PageTemplate from "../components/TemplateMovieListPage";
@@ -29,7 +30,12 @@ const TrendingMoviesPage = () => {
       title="Trending Movies"
       movies={movies}
       action={(movie) => {
-        return <AddToToWatchListIcon movie={movie} />;
+        return (
+          <>
+            <AddToFavoritesIcon movie={movie} />
+            <AddToToWatchListIcon movie={movie} />
+          </>
+        );
       }}
     />
   );

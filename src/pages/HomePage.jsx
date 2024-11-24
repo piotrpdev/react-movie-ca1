@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { getMovies } from "../api/tmdb-api";
 import AddToFavoritesIcon from "../components/CardIcons/AddToFavorites";
+import AddToToWatchListIcon from "../components/CardIcons/AddToToWatchList";
 import Spinner from "../components/Spinner";
 import PageTemplate from "../components/TemplateMovieListPage";
 
@@ -32,7 +33,12 @@ const HomePage = () => {
       title="Discover Movies"
       movies={movies}
       action={(movie) => {
-        return <AddToFavoritesIcon movie={movie} />;
+        return (
+          <>
+            <AddToFavoritesIcon movie={movie} />
+            <AddToToWatchListIcon movie={movie} />
+          </>
+        );
       }}
       page={page}
       setPage={setPage}
