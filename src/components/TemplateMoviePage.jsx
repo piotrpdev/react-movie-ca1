@@ -1,6 +1,7 @@
 import Grid from "@mui/material/Grid2";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import Stack from "@mui/material/Stack";
 import { useQuery } from "@tanstack/react-query";
 
 import { getMovieImages } from "../api/tmdb-api";
@@ -47,7 +48,9 @@ const TemplateMoviePage = ({ movie, children }) => {
           </div>
         </Grid>
 
-        <Grid size={{ xs: 9 }}>{children}</Grid>
+        <Grid size={{ xs: 9 }}>
+          <Stack spacing={3}>{children}</Stack>
+        </Grid>
       </Grid>
     </>
   );

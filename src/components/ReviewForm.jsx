@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
 import Snackbar from "@mui/material/Snackbar";
+import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
@@ -26,11 +27,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "left",
-  },
-  form: {
-    width: "100%",
-    "& > * ": {
-      marginTop: 2,
+    form: {
+      width: "100%",
     },
   },
   textField: {
@@ -96,8 +94,8 @@ const ReviewForm = ({ movie }) => {
   };
 
   return (
-    <Box component="div" sx={styles.root}>
-      <Typography component="h2" variant="h3">
+    <Stack component="div" spacing={1} sx={styles.root}>
+      <Typography component="h5" variant="h5">
         Write a review
       </Typography>
 
@@ -153,7 +151,15 @@ const ReviewForm = ({ movie }) => {
           control={control}
           name="rating"
           render={() => (
-            <Box sx={{ width: 200, display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                width: 200,
+                display: "flex",
+                alignItems: "center",
+                marginTop: "10px",
+                marginBottom: "25px",
+              }}
+            >
               <Rating
                 id="select-rating"
                 name="select-rating"
@@ -200,7 +206,7 @@ const ReviewForm = ({ movie }) => {
           </Button>
         </Box>
       </form>
-    </Box>
+    </Stack>
   );
 };
 

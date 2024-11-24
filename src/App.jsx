@@ -65,7 +65,7 @@ const App = () => {
             <Routes>
               <Route
                 path="/movies/favorites"
-                element={<FavoriteMoviesPage />}
+                element={<FavoriteMoviesPage session={session} />}
               />
               <Route path="/reviews/:id" element={<MovieReviewPage />} />
               <Route path="/movies/:id" element={<MoviePage />} />
@@ -83,7 +83,10 @@ const App = () => {
               />
               <Route path="/person/:id" element={<PersonDetailsPage />} />
               <Route path="/signIn" element={<SignInPage />} />
-              <Route path="/movies/to-watch" element={<ToWatchMoviesPage />} />
+              <Route
+                path="/movies/to-watch"
+                element={<ToWatchMoviesPage session={session} />}
+              />
             </Routes>
           </MoviesContextProvider>
         </BrowserRouter>

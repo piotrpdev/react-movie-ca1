@@ -104,11 +104,13 @@ export default function FilterMoviesCard(props) {
       variant="outlined"
     >
       <CardContent>
-        <Stack>
-          <Typography variant="h5" component="h1">
+        <Stack spacing={3}>
+          <Stack spacing={2} direction="row">
             <SearchIcon fontSize="large" />
-            Filter the movies.
-          </Typography>
+            <Typography variant="h5" component="h1">
+              Filter the movies.
+            </Typography>
+          </Stack>
           <TextField
             sx={{ ...formControl }}
             id="filled-search"
@@ -210,13 +212,14 @@ export default function FilterMoviesCard(props) {
           </FormControl>
         </Stack>
       </CardContent>
-      <CardMedia sx={{ height: 162 }} image={img} title="Filter" />
+      <CardMedia sx={{ height: 117 }} image={img} title="Filter" />
       <CardContent>
-        <Typography variant="h5" component="h1">
+        <Stack spacing={2} direction="row">
           <SearchIcon fontSize="large" />
-          Filter the movies.
-          <br />
-        </Typography>
+          <Typography variant="h5" component="h1">
+            Filter the movies.
+          </Typography>
+        </Stack>
       </CardContent>
     </Card>
   );

@@ -6,6 +6,7 @@ import Chip from "@mui/material/Chip";
 import Drawer from "@mui/material/Drawer";
 import Fab from "@mui/material/Fab";
 import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
@@ -26,12 +27,14 @@ const MovieDetails = ({ movie }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <>
-      <Typography variant="h5" component="h3">
-        Overview
-      </Typography>
+    <Stack>
+      <Typography variant="h5">Overview</Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography
+        variant="h6"
+        component="p"
+        sx={{ marginTop: "10px", marginBottom: "25px" }}
+      >
         {movie.overview}
       </Typography>
 
@@ -46,16 +49,30 @@ const MovieDetails = ({ movie }) => {
         ))}
       </Paper>
       <Paper component="ul" sx={{ ...root }}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
-        <Chip
-          icon={<MonetizationIcon />}
-          label={`${movie.revenue.toLocaleString()}`}
-        />
-        <Chip
-          icon={<StarRate />}
-          label={`${movie.vote_average} (${movie.vote_count}`}
-        />
-        <Chip label={`Released: ${movie.release_date}`} />
+        <li>
+          <Chip
+            sx={{ ...chip }}
+            icon={<AccessTimeIcon />}
+            label={`${movie.runtime} min.`}
+          />
+        </li>
+        <li>
+          <Chip
+            sx={{ ...chip }}
+            icon={<MonetizationIcon />}
+            label={`${movie.revenue.toLocaleString()}`}
+          />
+        </li>
+        <li>
+          <Chip
+            sx={{ ...chip }}
+            icon={<StarRate />}
+            label={`${movie.vote_average} (${movie.vote_count}`}
+          />
+        </li>
+        <li>
+          <Chip sx={{ ...chip }} label={`Released: ${movie.release_date}`} />
+        </li>
       </Paper>
       <Paper component="ul" sx={{ ...root }}>
         <li>
@@ -87,7 +104,7 @@ const MovieDetails = ({ movie }) => {
       >
         <MovieReviews movie={movie} />
       </Drawer>
-    </>
+    </Stack>
   );
 };
 export default MovieDetails;

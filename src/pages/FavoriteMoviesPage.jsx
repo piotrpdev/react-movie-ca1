@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner";
 import PageTemplate from "../components/TemplateMovieListPage";
 import { MoviesContext } from "../contexts/MoviesContext";
 
-const FavoriteMoviesPage = () => {
+const FavoriteMoviesPage = ({ session }) => {
   const { favorites: movieIds } = useContext(MoviesContext);
 
   // Create an array of queries and run in parallel.
@@ -40,7 +40,7 @@ const FavoriteMoviesPage = () => {
         return (
           <>
             <RemoveFromFavorites movie={movie} />
-            <WriteReview movie={movie} />
+            <WriteReview movie={movie} session={session} />
           </>
         );
       }}

@@ -28,7 +28,7 @@ export default function MovieCredits({ movie }) {
   const cast = data.cast;
 
   return (
-    <>
+    <Stack spacing={2}>
       <Typography variant="h5" component="h3">
         Cast
       </Typography>
@@ -60,6 +60,6 @@ export default function MovieCredits({ movie }) {
           </Card>
         ))}
       </Stack>
-    </>
+    </Stack>
   );
 }

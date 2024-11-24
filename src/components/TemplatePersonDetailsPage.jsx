@@ -1,5 +1,6 @@
 import Grid from "@mui/material/Grid2";
 import ImageListItem from "@mui/material/ImageListItem";
+import Stack from "@mui/material/Stack";
 
 import PersonHeader from "./HeaderPerson";
 
@@ -20,7 +21,9 @@ const TemplatePersonDetailsPage = ({ personDetails, children }) => {
           </div>
         </Grid>
 
-        <Grid size={{ xs: 9 }}>{children}</Grid>
+        <Grid size={{ xs: 9 }}>
+          <Stack spacing={3}>{children}</Stack>
+        </Grid>
       </Grid>
     </>
   );

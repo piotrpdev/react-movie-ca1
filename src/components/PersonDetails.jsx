@@ -1,4 +1,5 @@
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
@@ -19,80 +20,33 @@ const PersonDetails = ({ personDetails }) => {
   const [bioLong, setBioLong] = useState(false);
 
   return (
-    <>
-      <Typography variant="h5" component="h3">
-        Overview
-      </Typography>
+    <Stack>
+      <Typography variant="h5">Overview</Typography>
 
       {bioLong ? (
-        <Typography variant="h6" component="p">
+        <Typography
+          variant="h6"
+          component="p"
+          sx={{ marginTop: "10px", marginBottom: "25px" }}
+        >
           {personDetails.biography}
           <Button size="small" onClick={() => setBioLong(false)}>
             Read Less
           </Button>
         </Typography>
       ) : (
-        <Typography variant="h6" component="p">
+        <Typography
+          variant="h6"
+          component="p"
+          sx={{ marginTop: "10px", marginBottom: "25px" }}
+        >
           {excerpt(personDetails.biography)}
           <Button size="small" onClick={() => setBioLong(true)}>
             Read More
           </Button>
         </Typography>
       )}
-
-      {/* <Paper component="ul" sx={{ ...root }}>
-        <li>
-          <Chip label="Genres" sx={{ ...chip }} color="primary" />
-        </li>
-        {person.genres.map((g) => (
-          <li key={g.name}>
-            <Chip label={g.name} sx={{ ...chip }} />
-          </li>
-        ))}
-      </Paper>
-      <Paper component="ul" sx={{ ...root }}>
-        <Chip icon={<AccessTimeIcon />} label={`${person.runtime} min.`} />
-        <Chip
-          icon={<MonetizationIcon />}
-          label={`${person.revenue.toLocaleString()}`}
-        />
-        <Chip
-          icon={<StarRate />}
-          label={`${person.vote_average} (${person.vote_count}`}
-        />
-        <Chip label={`Released: ${person.release_date}`} />
-      </Paper>
-      <Paper component="ul" sx={{ ...root }}>
-        <li>
-          <Chip label="Production Countries" sx={{ ...chip }} color="primary" />
-        </li>
-        {person.production_countries.map((c) => (
-          <li key={c.name}>
-            <Chip label={c.name} sx={{ ...chip }} />
-          </li>
-        ))}
-      </Paper>
-      <Fab
-        color="secondary"
-        variant="extended"
-        onClick={() => setDrawerOpen(true)}
-        sx={{
-          position: "fixed",
-          bottom: "1em",
-          right: "1em",
-        }}
-      >
-        <NavigationIcon />
-        Reviews
-      </Fab>
-      <Drawer
-        anchor="top"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
-        <MovieReviews movie={movie} />
-      </Drawer> */}
-    </>
+    </Stack>
   );
 };
 export default PersonDetails;
