@@ -14,12 +14,16 @@
 
 > [!NOTE]
 > You will need to provide [your own TMDb API key][tmdb-key].
+>
+> You will also need to provide [your own Supabase key][supa].
+>
+> - *Make sure to setup GitHub auth and use the [setup.sql] file.*
 
 ```bash
 # Install dependencies
 npm install
 
-# Add TMDb key
+# Add TMDb and Supabase keys
 nano .env.template
 mv .env.template .env
 
@@ -82,6 +86,8 @@ Made using the following resources:
 [vite]: https://vite.dev/
 [pre-commit]: https://pre-commit.com/#install
 [tmdb-key]: https://developer.themoviedb.org/docs/getting-started
+[supa]: https://supabase.com/
+[setup.sql]: ./setup.sql
 [license]: ./LICENSE
 [cra-vite]: https://medium.com/@mun1013/guide-to-migrating-from-create-react-app-cra-to-vite-5516f55aa410
 [js-jsx]: https://gist.github.com/parties/90cdf35f9a3d05bea6df76dc83a69641
